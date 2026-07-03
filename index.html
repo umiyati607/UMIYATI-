@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMIYATI</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:url("background.jpg") center center no-repeat;
+background-size:cover;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.25);
+}
+
+.container{
+position:relative;
+text-align:center;
+z-index:2;
+width:90%;
+max-width:500px;
+}
+
+.logo{
+font-size:60px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#4285F4;}
+.logo span:nth-child(5){color:#34A853;}
+.logo span:nth-child(6){color:#EA4335;}
+.logo span:nth-child(7){color:#4285F4;}
+
+.jam{
+font-size:48px;
+font-weight:bold;
+color:white;
+margin-bottom:5px;
+text-shadow:0 2px 5px black;
+}
+
+.tanggal{
+color:white;
+font-size:18px;
+margin-bottom:25px;
+}
+
+.search{
+background:white;
+border-radius:40px;
+padding:15px 20px;
+display:flex;
+align-items:center;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+.search input{
+flex:1;
+border:none;
+outline:none;
+font-size:18px;
+}
+
+.search button{
+border:none;
+background:none;
+font-size:22px;
+cursor:pointer;
+}
+.menu{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.menu a{
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(8px);
+padding:12px 18px;
+border-radius:15px;
+font-size:16px;
+transition:.3s;
+}
+
+.menu a:hover{
+background:white;
+color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="jam" id="jam"></div>
+
+<div class="tanggal" id="tanggal"></div>
+
+<div class="logo">
+<span>U</span>
+<span>M</span>
+<span>I</span>
+<span>Y</span>
+<span>A</span>
+<span>T</span>
+<span>I</span>
+</div>
+
+<div class="search">
+<input id="q" placeholder="Mau cari apa?">
+<button onclick="cari()">🔍</button>
+</div>
+
+<div class="menu">
+<a href="https://youtube.com">YouTube</a>
+<a href="https://facebook.com">Facebook</a>
+<a href="https://wa.me">WhatsApp</a>
+<a href="https://tiktok.com">TikTok</a>
+<a href="https://chat.openai.com">ChatGPT</a>
+</div>
+
+</div>
+
+<script>
+
+function cari(){
+let q=document.getElementById("q").value;
+location.href="https://www.google.com/search?q="+encodeURIComponent(q);
+}
+
+document.getElementById("q").addEventListener("keypress",function(e){
+if(e.key==="Enter")cari();
+});
+
+function waktu(){
+
+let d=new Date();
+
+document.getElementById("jam").innerHTML=
+d.toLocaleTimeString("id-ID");
+
+document.getElementById("tanggal").innerHTML=
+d.toLocaleDateString("id-ID",{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+});
+
+}
+
+setInterval(waktu,1000);
+
+waktu();
+
+</script>
+
+</body>
+</html>
